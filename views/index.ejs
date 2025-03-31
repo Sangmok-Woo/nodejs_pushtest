@@ -1,14 +1,45 @@
+<!-- index.ejs -->
 <!DOCTYPE html>
 <html>
 <head>
   <title>게시판</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ... (기존 alert 스타일) ... */
+    /* ✨ 추천 버튼 스타일 (작고 귀엽게) ✨ */
+    .like-button {
+      background: none;
+      border: 1px solid #ccc;
+      padding: 2px 5px;
+      font-size: 0.8em;
+      cursor: pointer;
+      border-radius: 3px;
+      margin-left: 5px; /* 제목과의 간격 */
+    }
+    .like-button:hover {
+      background-color: #eee;
+    }
+  </style>
 </head>
 <body>
+  <!-- ... (플래시 메시지 보여주는 부분) ... -->
+
   <h1>📋 게시판 목록</h1>
   <a href="/write">글 쓰러 가기 🖊️</a>
   <ul>
     <% posts.forEach(post => { %>
-      <li><a href="/view/<%= post.id %>"><%= post.title %></a> | <%= post.created_at %></li>
+      <li>
+        <a href="/view/<%= post.id %>"><%= post.title %></a>
+        <!-- ✨✨✨ 3-1: 추천 수 보여주기 ✨✨✨ -->
+        <small>(추천: <%= post.likes %>)</small>
+
+        <!-- ✨✨✨ 3-1: 추천 버튼 (Form 사용) ✨✨✨ -->
+        <form action="/like/<%= post.id %>" method="post" style="display: inline;">
+            <button type="submit" class="like-button">👍 추천</button>
+        </form>
+
+        | <small><%= post.created_at %></small>
+      </li>
     <% }); %>
   </ul>
 </body>

@@ -2,11 +2,24 @@
 <html>
 <head>
   <title><%= post.title %></title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <h1><%= post.title %></h1>
   <p><%= post.content %></p>
   <p><small>작성일: <%= post.created_at %></small></p>
+  <hr> <!-- 구분선 추가 -->
+
+  <!-- ✨✨✨ 수정/삭제 링크/버튼 추가 ✨✨✨ -->
+  <a href="/edit/<%= post.id %>">✏️ 수정하기</a>
+
+  <!-- 삭제는 form으로 감싸서 POST 방식으로 보내는 것이 더 안전합니다 -->
+  <form action="/delete/<%= post.id %>" method="post" style="display: inline;">
+      <button type="submit" onclick="return confirm('정말 삭제하시겠습니까? 🗑️');">🗑️ 삭제하기</button>
+      <!-- onclick 확인: 실수로 삭제하는 것을 방지하는 안전장치! -->
+  </form>
+
+  <br><br> <!-- 줄바꿈 추가 -->
   <a href="/">🔙 목록으로</a>
 </body>
 </html>

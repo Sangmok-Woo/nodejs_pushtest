@@ -20,8 +20,10 @@
   "homepage": "https://github.com/Sangmok-Woo/nodejs_pushtest#readme",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
+    "express-session": "^1.18.1",
     "sqlite3": "^5.1.7"
   }
 }
